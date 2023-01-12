@@ -40,3 +40,5 @@ jobs:
     #         }'  
       - name: "HELLO SECRETS"
         run: echo "my secret is ${{ secrets.LIDOR }}"    
+      - name: "USE ENVIRONMENT VARIABLE"
+        run: echo "my variable is ${{ vars.ENV }}"    
