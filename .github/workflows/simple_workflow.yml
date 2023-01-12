@@ -38,8 +38,5 @@ jobs:
     #         "title": "Automated issue for commit: ${{ github.sha }}",
     #         "body": "This issue was automatically created by the Github actions workflow  **${{ github.workflow }}**. \n\n The commit Hash was: _${{ github.sha }}_." 
     #         }'  
-      - name: HELLO SECRETS
-        with:
-          super_secret: ${{ secrets.LIDOR }}
-        run: |
-          echo "my secret is ${{ super_secret }}"
+      - name: "HELLO SECRETS"
+        run: echo "my secret is ${{ secrets.LIDOR }}"    
