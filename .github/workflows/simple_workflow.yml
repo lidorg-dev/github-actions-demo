@@ -43,8 +43,6 @@ jobs:
       - name: "USE ENVIRONMENT VARIABLE"
         run: |
           echo "my variable is ${{ vars.MYVAR }}"
-          echo "repository variable : ${{ vars.REPOSITORY_VAR }}"
-          echo "organization variable : ${{ vars.ORGANIZATION_VAR }}"
           echo "Home: ${HOME}"
           echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
           echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
@@ -54,3 +52,8 @@ jobs:
           echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
           echo "GITHUB_SHA: ${GITHUB_SHA}"
           echo "GITHUB_REF: ${GITHUB_REF}"
+  DEPLOY:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "HELLO"
+        run: echo "HELLO"
