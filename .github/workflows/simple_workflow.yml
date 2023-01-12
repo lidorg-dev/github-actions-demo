@@ -43,12 +43,12 @@ jobs:
         run: echo "my secret is ${{ secrets.LIDOR }}"    
       - name: "USE ENVIRONMENT VARIABLE"
         run:  | 
-               echo "my variable is ${{ vars.MYVAR }}" > 2.txt \
-               cat 2.txt    
-      - name: "USE QA VARIABLE"
+               echo "my variable is ${{ vars.MYVAR }}" >> $GITHUB_OUTPUT \
+               echo $GITHUB_OUTPUT
+      - name: "USE VARIABLE"
         run:  |
               echo "my variable is ${{ vars.MYVAR_2 }}" > 1.txt  \
-              cat 1.txt 
+              cat 1.txt
       - name: "USE secret ENVIRONMENT"
         run: echo "my variable is ${{ secrets.ENV_SECRET }}"  
 
