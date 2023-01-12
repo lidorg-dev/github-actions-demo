@@ -44,7 +44,7 @@ jobs:
       - name: "USE ENVIRONMENT VARIABLE"
         run: echo "my variable is ${{ vars.MYVAR }}"    
       - name: "USE QA VARIABLE"
-        run: echo "my variable is ${{ env.ENV }}"  
+        run: echo "my variable is ${{ vars.ENV }} > 1.txt && cat 1.txt"  
       - name: "USE secret ENVIRONMENT"
         run: echo "my variable is ${{ secrets.ENV_SECRET }}"  
 
