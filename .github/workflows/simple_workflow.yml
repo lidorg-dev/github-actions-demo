@@ -19,6 +19,7 @@ jobs:
   Create_commit:
 
     runs-on: ubuntu-latest
+    environment: QA
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -42,3 +43,8 @@ jobs:
         run: echo "my secret is ${{ secrets.LIDOR }}"    
       - name: "USE ENVIRONMENT VARIABLE"
         run: echo "my variable is ${{ vars.MYVAR }}"    
+      - name: "USE QA VARIABLE"
+        run: echo "my variable is ${{ vars.ENV }}"  
+      - name: "USE secret ENVIRONMENT"
+        run: echo "my variable is ${{ secrets.ENV_SECRET }}"  
+
