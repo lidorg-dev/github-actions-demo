@@ -19,7 +19,6 @@ jobs:
   Create_commit:
 
     runs-on: ubuntu-latest
-    environment: QA
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -42,13 +41,16 @@ jobs:
       - name: "HELLO SECRETS"
         run: echo "my secret is ${{ secrets.LIDOR }}"    
       - name: "USE ENVIRONMENT VARIABLE"
-        run:  | 
-               echo "my variable is ${{ vars.MYVAR }}" >> $GITHUB_OUTPUT \
-               echo $GITHUB_OUTPUT
-      - name: "USE VARIABLE"
-        run:  |
-              echo "my variable is ${{ vars.MYVAR_2 }}" > 1.txt  \
-              cat 1.txt
-      - name: "USE secret ENVIRONMENT"
-        run: echo "my variable is ${{ secrets.ENV_SECRET }}"  
-
+        run: |
+          echo "my variable is ${{ vars.MYVAR }}"
+          echo "repository variable : ${{ vars.REPOSITORY_VAR }}"
+          echo "organization variable : ${{ vars.ORGANIZATION_VAR }}"
+          echo "Home: ${HOME}"
+          echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
+          echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
+          echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
+          echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+          echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
+          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+          echo "GITHUB_SHA: ${GITHUB_SHA}"
+          echo "GITHUB_REF: ${GITHUB_REF}"
