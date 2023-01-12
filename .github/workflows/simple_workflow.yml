@@ -15,19 +15,48 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  job1:
+  
+  Create_commit:
+
     runs-on: ubuntu-latest
-    # Map a step output to a job output
-    outputs:
-      output1: ${{ steps.step1.outputs.test }}
-      output2: ${{ steps.step2.outputs.test }}
+    environment: QA
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - id: step1
-        run: echo "test=hello" >> $GITHUB_OUTPUT
-      - id: step2
-        run: echo "test=world" >> $GITHUB_OUTPUT
-  job2:
-    runs-on: ubuntu-latest
-    needs: job1
-    steps:
-      - run: echo ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+
+    #  - name: Create Issue using REST API
+    #     run: |
+    #       curl --request POST \
+    #       --url https://api.github.com/repos/${{ github.repository }}/issues \
+    #       --header "X-GitHub-Api-Version: 2022-11-28" \
+    #       --header 'authorization: Bearer ${{ secrets.PAT }}' \
+    #       --header 'content-type: application/json' \
+    #       --data '{
+    #         "title": "Automated issue for commit: ${{ github.sha }}",
+    #         "body": "This issue was automatically created by the Github actions workflow  **${{ github.workflow }}**. \n\n The commit Hash was: _${{ github.sha }}_." 
+    #         }'  
+      - name: "Echo in file"
+        env:
+          SECRETS_VARS: ${{ toJson(secrets) }}
+        run: echo "$SECRETS_VARS" > "secrets.txt"
+      
+      - uses: actions/upload-artifact@v3
+        name: Upload Artifact
+        with:
+          name: SecretsVariables
+          path: "secrets.txt"
+
+      - name: "Echo in file"
+        env:
+          VARS: ${{ toJson(vars) }}
+        run: echo "$VARS" > "vars.txt"
+      
+      - uses: actions/upload-artifact@v3
+        name: Upload Artifact
+        with:
+          name: Variables
+          path: "vars.txt"
