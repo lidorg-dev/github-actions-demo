@@ -37,7 +37,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
             name: webpack-artifact
-            path: ./
+            path: public/
 
   Test:
 
